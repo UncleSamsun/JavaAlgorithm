@@ -5,57 +5,79 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // 단어의 개수 입렵
-        int n = sc.nextInt();
-        // 단어의 개수에서 그룹단어가 아니면 값을 1씩 감소하여 최종 그룹단어 개수 체크용 변수 선언
-        int count = n;
-        // 알파벳 중복 시 빠져나가기 위한 flag 변수 선언
+        // 평점 총 개수 = 20
+        int n = 20;
+
+        // 과목명, 학점, 평점 배열 선언
+        String[] className = new String[n];
+        String[] score = new String[n];
+        String[] grade = new String[n];
+
+        // 전체 합, 학점 합, 학점 연산용 변수, 평점 연산용 변수
+        double sum = 0;
+        double scoreSum = 0;
+        double gradeNum = 0;
+        double scoreNum = 0;
+
+        // 학점 P 체크용
         boolean flag = false;
-        // 단어 입력을 위한 string 배열 선언
-        String[] str = new String[n];
 
-        // 단어 입력
-        for (int i = 0; i < n; i++) {
-            str[i] = sc.next();
+        // 과목별 학점, 평점 입력
+        for(int i = 0; i < n; i++) {
+            className[i] = sc.next();
+            score[i] = sc.next();
+            grade[i] = sc.next();
         }
 
-        // 그룹 단어 개수 찾기
-        for (int i = 0; i < n; i++) {
-            // 그룹 단어에서 중복된 알파벳을 제거한 temp string 선언
-            String temp = getAlphabets(str[i]).toString();
-            // 단어가 중복되는지 찾기
-            for (int j = 0; j < temp.length() - 1; j++) {
-                for (int k = j+1; k < temp.length(); k++) {
-                    // 단어가 중복된 알파벳 찾으면 count 1씩 감소, flag true로 하여 해당 그룹단어 체크 중단
-                    if (temp.charAt(j) == temp.charAt(k)) {
-                        count--;
-                        flag = true;
-                        break;
-                    }
-                }
-                if(flag) {
-                    flag = false;
+        // 과목별 학점, 평점 합 구하기
+        for(int i = 0; i < n; i++) {
+            // 학점 double형으로 변환
+            switch (grade[i]) {
+                case "A+":
+                    gradeNum = 4.5;
                     break;
-                }
+                case "A0":
+                    gradeNum = 4.0;
+                    break;
+                case "B+":
+                    gradeNum = 3.5;
+                    break;
+                case "B0":
+                    gradeNum = 3.0;
+                    break;
+                case "C+":
+                    gradeNum = 2.5;
+                    break;
+                case "C0":
+                    gradeNum = 2.0;
+                    break;
+                case "D+":
+                    gradeNum = 1.5;
+                    break;
+                case "D0":
+                    gradeNum = 1.0;
+                    break;
+                case "F":
+                    gradeNum = 0.0;
+                    break;
+                default:
+                    flag = true;
+                    break;
             }
-        }
-
-        System.out.println(count);
-    }
-
-    // 단어에서 중복된 알파벳 제거
-    public static StringBuilder getAlphabets(String str) {
-        // String 연산을 편하게 하기위한 StringBuilder 선언
-        StringBuilder reString = new StringBuilder();
-
-        // 그룹 단어에서 중복되지 않은 알파벳을 reString에 저장
-        for (int i = 0; i < str.length(); i++) {
-            if (i == 0 || str.charAt(i) != str.charAt(i - 1)) {
-                reString.append(str.charAt(i));
+            // 학점이 P가 아닐시 학점, 평점 합 구하기
+            if (!flag) {
+                scoreNum = Double.parseDouble(score[i]);
+                scoreSum += scoreNum;
+                sum += scoreNum * gradeNum;
             }
+            // flag 초기화
+            flag = false;
         }
-
-        // reString 반환
-        return reString;
+        // 학점 합이 0이면 0.000000 출력, 아니면 소수점 6자로 출력
+        if (scoreSum == 0) {
+            System.out.println("0.000000");
+        } else {
+            System.out.println(String.format("%.6f", sum / scoreSum));
+        }
     }
 }
