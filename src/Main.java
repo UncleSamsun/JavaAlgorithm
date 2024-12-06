@@ -6,34 +6,32 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         // 배열크기 입력
-        int N = sc.nextInt();
-        int M = sc.nextInt();
+        int N = 9;
+        int M = 9;
 
-        // 2차원 A배열, B배열 선언
-        int[][] arrA = new int[N][M];
-        int[][] arrB = new int[N][M];
+        // 최대값 좌표 변수 선언
+        int max = 0;
+        int max_x = 0;
+        int max_y = 0;
 
-        // A배열 입력
+        // 2차원 배열 선언
+        int[][] arr = new int[N][M];
+
+        // 배열 입력
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
-                arrA[i][j] = sc.nextInt();
+                arr[i][j] = sc.nextInt();
+
+                // 최대값 찾기
+                if (arr[i][j] > max) {
+                    max = arr[i][j];
+                    max_x = i;
+                    max_y = j;
+                }
             }
         }
 
-        // B배열 입력
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                arrB[i][j] = sc.nextInt();
-            }
-        }
-
-        // A배열 + B배열 출력
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                System.out.print(arrA[i][j] + arrB[i][j] + " ");
-            }
-            System.out.println();
-        }
-
+        System.out.println(max);
+        System.out.println((max_x + 1) + " " + (max_y + 1));
     }
 }
