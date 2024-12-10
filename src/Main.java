@@ -5,31 +5,34 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // String 입력
-        String str = sc.next();
+        // 10진수 입력
+        int num = sc.nextInt();
         // 진법 입력
         int base = sc.nextInt();
-        // 합계
-        int sum = 0;
-        int tmp = 1;
+        // 출력 스트링
+        StringBuilder str = new StringBuilder();
+        // 반복문 제어용 boolean
+        boolean flag = true;
 
-        // 진법 변환
-        for (int i = str.length() - 1; i >= 0; i--) {
-            // 한 단어씩 계산
-            char c = str.charAt(i);
-            // 단어를 숫자로 변환
-            int value = 0;
+        // 숫자를 단어로 변환
+        while (flag) {
+            // 10진수를 입력받은 진법으로 나눈 나머지 계산
+            int mod = num % base;
 
-            if(c >= '0' && c <= '9') {
-                value = c - '0';
+            // 나머지 값에 따라 10진수를 단어로 변환
+            if (mod >= 10) {
+                str.append((char) ('A' + mod - 10));
             } else {
-                value = c - 'A' + 10;
+                str.append(mod);
             }
+            // 진법으로 나눈 몫 계산
+            num /= base;
 
-            // 진법 변환
-            sum += value * tmp;
-            tmp *= base;
+            // 더이상 나눌게 없으면 반복문 종료
+            if (num == 0) {
+                flag = false;
+            }
         }
-        System.out.println(sum);
+        System.out.println(str.reverse().toString());
     }
 }
