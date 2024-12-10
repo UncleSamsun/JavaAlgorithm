@@ -5,31 +5,19 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // 쿼터, 다임, 니켈, 페니 상수 정의
-        final int Quater = 25;
-        final int Dime = 10;
-        final int Nickel = 5;
-        final int Penny = 1;
+        // 반복 개수
+        int n = sc.nextInt();
+        // 점의 개수
+        int point = 2;
 
-        // 테스트케이스 수
-        int TC = sc.nextInt();
-
-        // 테스트 케이스 별 입력 및 거스름돈 계산 출력
-        for (int i = 0; i < TC; i++) {
-            int Cash = sc.nextInt();
-
-            int QuaterCnt = Cash / Quater;
-            Cash %= Quater;
-
-            int DimeCnt = Cash / Dime;
-            Cash %= Dime;
-
-            int NickelCnt = Cash / Nickel;
-            Cash %= Nickel;
-
-            int PennyCnt = Cash / Penny;
-
-            System.out.println(QuaterCnt + " " + DimeCnt + " " + NickelCnt + " " + PennyCnt);
+        // 반복했을 때 가로 또는 세로 점의 개수
+        for (int i = 0; i < n; i++) {
+            point = (point * 2) - 1;
         }
+        // 전체 점의 개수
+        point *= point;
+
+        // 출력
+        System.out.println(point);
     }
 }
