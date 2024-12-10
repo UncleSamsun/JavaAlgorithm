@@ -5,34 +5,31 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // 10진수 입력
-        int num = sc.nextInt();
-        // 진법 입력
-        int base = sc.nextInt();
-        // 출력 스트링
-        StringBuilder str = new StringBuilder();
-        // 반복문 제어용 boolean
-        boolean flag = true;
+        // 쿼터, 다임, 니켈, 페니 상수 정의
+        final int Quater = 25;
+        final int Dime = 10;
+        final int Nickel = 5;
+        final int Penny = 1;
 
-        // 숫자를 단어로 변환
-        while (flag) {
-            // 10진수를 입력받은 진법으로 나눈 나머지 계산
-            int mod = num % base;
+        // 테스트케이스 수
+        int TC = sc.nextInt();
 
-            // 나머지 값에 따라 10진수를 단어로 변환
-            if (mod >= 10) {
-                str.append((char) ('A' + mod - 10));
-            } else {
-                str.append(mod);
-            }
-            // 진법으로 나눈 몫 계산
-            num /= base;
+        // 테스트 케이스 별 입력 및 거스름돈 계산 출력
+        for (int i = 0; i < TC; i++) {
+            int Cash = sc.nextInt();
 
-            // 더이상 나눌게 없으면 반복문 종료
-            if (num == 0) {
-                flag = false;
-            }
+            int QuaterCnt = Cash / Quater;
+            Cash %= Quater;
+
+            int DimeCnt = Cash / Dime;
+            Cash %= Dime;
+
+            int NickelCnt = Cash / Nickel;
+            Cash %= Nickel;
+
+            int PennyCnt = Cash / Penny;
+
+            System.out.println(QuaterCnt + " " + DimeCnt + " " + NickelCnt + " " + PennyCnt);
         }
-        System.out.println(str.reverse().toString());
     }
 }
