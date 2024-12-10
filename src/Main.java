@@ -5,19 +5,22 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // 반복 개수
-        int n = sc.nextInt();
-        // 점의 개수
-        int point = 2;
+        // 방 번호
+        double n = sc.nextDouble();
+        // 가장자리 방 개수 계산용
+        double m = 6;
+        // 카운트 변수
+        int count = 1;
 
-        // 반복했을 때 가로 또는 세로 점의 개수
-        for (int i = 0; i < n; i++) {
-            point = (point * 2) - 1;
+        // n이 1일때를 생각하자..
+        while (n > 1) {
+            n -= m;
+            count++;
+
+            // 방의 개수는 가장자리로 갈수록 6개씩 증가함
+            m += 6;
         }
-        // 전체 점의 개수
-        point *= point;
 
-        // 출력
-        System.out.println(point);
+        System.out.println(count);
     }
 }
