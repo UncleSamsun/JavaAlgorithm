@@ -5,22 +5,40 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // 방 번호
-        double n = sc.nextDouble();
-        // 가장자리 방 개수 계산용
-        double m = 6;
-        // 카운트 변수
-        int count = 1;
+        // X번째 입력
+        int X = sc.nextInt();
+        // 이전 라인까지의 개수 총합
+        int sum = 0;
+        // 현재 라인의 개수
+        int lineSum = 1;
 
-        // n이 1일때를 생각하자..
-        while (n > 1) {
-            n -= m;
-            count++;
-
-            // 방의 개수는 가장자리로 갈수록 6개씩 증가함
-            m += 6;
+        while (true) {
+            // 입력받은 X가 현재 번째에 있는지 확인
+            if(X <= sum + lineSum) {
+                // 현재 라인이 홀수이면
+                if(lineSum % 2 == 1) {
+                    // 분모는 큰수 -> 작은수
+                    int head = lineSum - (X - sum - 1);
+                    // 분자는 작은수 -> 큰수
+                    int foot = X - sum;
+                    // 출력
+                    System.out.println(head + "/" + foot);
+                    break;
+                }
+                // 현재 라인이 짝수이면
+                else {
+                    // 분모는 작은수 -> 큰수
+                    int head = X - sum;
+                    // 분자는 큰수 -> 작은수
+                    int foot = lineSum - (X - sum - 1);
+                    // 출력
+                    System.out.println(head + "/" + foot);
+                    break;
+                }
+            } else {
+                sum += lineSum;
+                lineSum++;
+            }
         }
-
-        System.out.println(count);
     }
 }
