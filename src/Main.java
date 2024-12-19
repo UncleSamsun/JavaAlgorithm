@@ -10,10 +10,10 @@ public class Main {
         // 각 포인트 배열 선언
         int[][] points = new int[2][N];
         // x좌표, y좌표의 최솟값, 최댓값
-        int xMin = 100001;
-        int yMin = 100001;
-        int xMax = 0;
-        int yMax = 0;
+        int xMin = 10001;
+        int yMin = 10001;
+        int xMax = -10001;
+        int yMax = -10001;
 
         // N 만큼 반복
         for (int i = 0; i < N; i++) {
