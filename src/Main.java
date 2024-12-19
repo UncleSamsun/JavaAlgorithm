@@ -5,26 +5,30 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // 낮동안 올라가는 높이
-        int A = sc.nextInt();
-        // 밤동안 내려오는 높이
-        int B = sc.nextInt();
-        // 나무막대 높이
-        int V = sc.nextInt();
+        // 반복
+        while (true) {
+            // 첫번째 수 입력
+            int num1 = sc.nextInt();
 
-        // 결과
-        int result = 0;
+            // 두번째 수 입력
+            int num2 = sc.nextInt();
 
-        // 정상에 올라가면 미끄러지지 않는다
-        // 위의 조건떄문에 밤에 내려오는 높이를 미리 빼고 계산 진행
-        result = (V - B) / (A - B);
-
-        // 만약 위의 계산을 했을 때 남은 높이가 있다면 하루더 올라가는 것으로 계산
-        if((V - B) % (A - B) != 0) {
-            result++;
+            // num1 과 num2가 둘다 0 일때 종료
+            if (num1 == 0 && num2 == 0) {
+                break;
+            }
+            // 첫번째 숫자가 두번째 숫자의 약수인지
+            if(num2 % num1 == 0) {
+                System.out.println("factor");
+            }
+            // 첫번째 숫자가 두번째 숫자의 배수인지
+            else if (num1 % num2 == 0) {
+                System.out.println("multiple");
+            }
+            // 둘다 아닌지
+            else {
+                System.out.println("neither");
+            }
         }
-
-        // 출력
-        System.out.println(result);
     }
 }
