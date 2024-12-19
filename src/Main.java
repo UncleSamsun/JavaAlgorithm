@@ -5,41 +5,29 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // 입력 개수 N
-        int N = sc.nextInt();
-        // 각 포인트 배열 선언
-        int[][] points = new int[2][N];
-        // x좌표, y좌표의 최솟값, 최댓값
-        int xMin = 10001;
-        int yMin = 10001;
-        int xMax = -10001;
-        int yMax = -10001;
+        // 세 각 입력
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        int C = sc.nextInt();
 
-        // N 만큼 반복
-        for (int i = 0; i < N; i++) {
-            points[0][i] = sc.nextInt();
-            points[1][i] = sc.nextInt();
-
-            // 각 x좌표, y좌표의 최대/최소 값 저장
-            if(xMin > points[0][i]) {
-                xMin = points[0][i];
+        // 세각이 모두 60 일때
+        if (A == 60 && B == 60 && C == 60) {
+            System.out.println("Equilateral");
+        }
+        // 세각의 합이 180일때
+        else if (A + B + C == 180) {
+            // 두 각이 같을 경우
+            if (A == B || B == C || C == A) {
+                System.out.println("Isosceles");
             }
-            if(xMax < points[0][i]) {
-                xMax = points[0][i];
-            }
-            if(yMin > points[1][i]) {
-                yMin = points[1][i];
-            }
-            if(yMax < points[1][i]) {
-                yMax = points[1][i];
+            // 모든 각이 다를 경우
+            else {
+                System.out.println("Scalene");
             }
         }
-
-        // 가로 세로 길이 저장
-        int length = xMax - xMin;
-        int height = yMax - yMin;
-
-        // 면적 출력
-        System.out.println(length * height);
+        // 그 외 모든 상황
+        else {
+            System.out.println("Error");
+        }
     }
 }
