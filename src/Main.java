@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -5,29 +6,36 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // 세 각 입력
-        int A = sc.nextInt();
-        int B = sc.nextInt();
-        int C = sc.nextInt();
+        while (true) {
+            int[] num = new int[3];
+            // 세 변의 길이 입력
+            num[0] = sc.nextInt();
+            num[1] = sc.nextInt();
+            num[2] = sc.nextInt();
 
-        // 세각이 모두 60 일때
-        if (A == 60 && B == 60 && C == 60) {
-            System.out.println("Equilateral");
-        }
-        // 세각의 합이 180일때
-        else if (A + B + C == 180) {
-            // 두 각이 같을 경우
-            if (A == B || B == C || C == A) {
+            // 값이 모두 0일때
+            if (num[0] == 0 && num[1] == 0 && num[2] == 0) {
+                break;
+            }
+
+            Arrays.sort(num);
+
+            // 세 변의 길이가 모두 같을 떄
+            if (num[0] == num[1] && num[1] == num[2]) {
+                System.out.println("Equilateral");
+            }
+            // 가장 긴 변이 다른 두변의 합보다 크거나 같을 때
+            else if (num[2] >= num[0] + num[1]) {
+                System.out.println("Invalid");
+            }
+            // 두 변의 길이가 같을 때
+            else if (num[2] == num[1] || num[1] == num[0]) {
                 System.out.println("Isosceles");
             }
-            // 모든 각이 다를 경우
+            // 그 외 정상적인 삼각형
             else {
                 System.out.println("Scalene");
             }
-        }
-        // 그 외 모든 상황
-        else {
-            System.out.println("Error");
         }
     }
 }
