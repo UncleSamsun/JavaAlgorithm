@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 
@@ -20,9 +21,9 @@ public class Main {
 
                 // 길이가 1일때
                 if (i - j == 0) dp[i][j] = 1;
-                // 길이가 2일때
+                    // 길이가 2일때
                 else if (i - j == 1) dp[i][j] = 1;
-                // 길이가 3이상일때
+                    // 길이가 3이상일때
                 else {
                     if (i >= N || j == 1) continue;
                     dp[i][j] = dp[i+1][j-1] == 1 ? 1 : 0;
