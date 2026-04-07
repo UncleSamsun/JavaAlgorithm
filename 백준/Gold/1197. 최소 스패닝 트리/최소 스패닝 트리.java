@@ -45,8 +45,10 @@ public class Main {
 
         int total = 0;
         for (int i = 0, cnt = 0; i < E && cnt < V-1; i++) {
-            if (findSet(edges[i].from) != findSet(edges[i].to)) {
-                p[findSet(edges[i].from)] = findSet(edges[i].to);
+            int from = findSet(edges[i].from);
+            int to = findSet(edges[i].to);
+            if (from != to) {
+                p[from] = to;
                 cnt++;
                 total += edges[i].dist;
             }
